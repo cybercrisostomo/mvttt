@@ -1,0 +1,481 @@
+/* Base Styling - Dark Ambient Vibe */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #030305;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+    font-size: 18px; 
+    position: relative;
+    overflow-x: hidden;
+    cursor: none; 
+}
+
+/* Video Background */
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#bg-video::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+    pointer-events: none;
+}
+
+a, button {
+    cursor: none !important;
+}
+
+/* Custom Desktop Cursor */
+.custom-cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none; 
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.25s ease;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.custom-cursor.hover {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(2px);
+}
+
+/* Glass Profile Card Container */
+.profile-container {
+    width: 100%;
+    max-width: 460px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 28px;
+    margin-bottom: 80px; 
+    position: relative;
+    z-index: 1;
+
+    animation: bubblePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Avatar with Glass Ring */
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-image: url('hh.png'); 
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto 18px auto;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+h1 {
+    font-size: 1.8rem; 
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    color: #ffffff;
+}
+
+.username {
+    font-size: 0.9rem; 
+    color: #aaa;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+
+/* Location Info */
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    font-size: 0.85rem;
+    color: #999;
+}
+
+.location-icon {
+    width: 14px;
+    height: 14px;
+    fill: #888;
+    opacity: 0.8;
+}
+
+#location-text {
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+/* Views Counter */
+.views-count {
+    font-size: 0.75rem;
+    color: #999;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+    text-transform: lowercase;
+}
+
+/* Glass Navigation Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 6px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.9rem; 
+    padding: 8px 18px;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
+.tab-btn.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Content Sections */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 120px;
+}
+
+.content-section {
+    display: none;
+    width: 100%;
+}
+
+.content-section.active {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: bubblePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.bio-text {
+    font-size: 1.1rem; 
+    color: #ddd;
+    line-height: 1.6;
+    width: 100%;
+    text-align: center;
+    min-height: 2.2rem;
+    font-weight: 300;
+}
+
+.typewriter-cursor {
+    color: #ffffff;
+    animation: blink 0.8s steps(2, start) infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    to { visibility: hidden; }
+}
+
+/* Glass Portfolio Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    width: 100%;
+}
+
+.portfolio-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bbb;
+    text-decoration: none;
+    font-size: 0.9rem; 
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+.portfolio-item:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* About Me Grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.about-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 4px;
+    text-transform: lowercase;
+}
+
+.card-desc {
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 300;
+    text-transform: lowercase;
+}
+
+/* Liquid Music Player */
+.music-player {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(12, 12, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: max-content;
+    max-width: 340px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    z-index: 999999; 
+}
+
+.player-controls-block {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-deck {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-deck svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+#pause-icon { display: none; }
+.music-player.is-playing #play-icon { display: none; }
+.music-player.is-playing #pause-icon { display: block; }
+
+.visualizer-deck {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    width: 14px;
+    height: 13px;
+}
+
+.visualizer-bar {
+    width: 2px;
+    height: 2px;
+    background-color: #ffffff;
+}
+
+.music-player.is-playing .visualizer-bar {
+    animation: liveBeatLoop 0.65s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+}
+
+.music-player.is-playing .visualizer-bar:nth-child(1) { animation-duration: 0.55s; animation-delay: 0.1s; }
+.music-player.is-playing .visualizer-bar:nth-child(2) { animation-duration: 0.70s; animation-delay: 0.3s; }
+.music-player.is-playing .visualizer-bar:nth-child(3) { animation-duration: 0.48s; animation-delay: 0.0s; }
+.music-player.is-playing .visualizer-bar:nth-child(4) { animation-duration: 0.62s; animation-delay: 0.2s; }
+
+@keyframes liveBeatLoop {
+    0% { height: 2px; }
+    100% { height: 13px; }
+}
+
+.track-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.track-title {
+    font-size: 0.8rem;
+    color: #eee;
+    font-weight: 400;
+}
+
+.track-artist {
+    font-size: 0.65rem;
+    color: #666;
+    text-transform: lowercase;
+}
+
+@media screen and (min-width: 768px) {
+    body { font-size: 20px; }
+    .profile-container { max-width: 500px; padding: 40px 32px; }
+    .avatar { width: 110px; height: 110px; }
+}
+
+@media (max-width: 767px) {
+    body, a, button { cursor: auto !important; }
+    .custom-cursor { display: none; }
+    .profile-container {
+        max-width: 100%;
+        padding: 32px 16px;
+        margin-bottom: 120px;
+    }
+    .avatar {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 16px;
+    }
+    h1 {
+        font-size: 1.3rem;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .about-card {
+        padding: 16px;
+    }
+    .card-icon {
+        font-size: 2rem;
+    }
+    .music-player {
+        bottom: 16px;
+        padding: 8px 16px;
+        max-width: calc(100% - 32px);
+    }
+}
+
+/* Touch Trail Animation */
+.touch-trail {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 98;
+    animation: trailFade 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes bubblePop {
+    0% { opacity: 0; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1); }
+}

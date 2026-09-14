@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>matt</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Video Background -->
+    <video id="bg-video" autoplay muted loop playsinline>
+        <source src="background.mp4" type="video/mp4">
+    </video>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <div class="profile-container">
+        <div class="avatar"></div>
+        <h1>mvtt</h1>
+        <div class="username">mvtt._0</div>
+        
+        <div class="location-info">
+            <svg class="location-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5z"/></svg>
+            <span class="location-text">Dagupan City, Philippines</span>
+        </div>
+        
+        <div class="views-count" id="view-display">loading views...</div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('bio')">home</button>
+            <button class="tab-btn" onclick="switchTab('portfolio')">socials</button>
+            <button class="tab-btn" onclick="switchTab('about')">about me</button>
+        </div>
+
+        <div class="content-wrapper">
+            <div id="bio" class="content-section active">
+                <p class="bio-text"><span id="typewriter-text"></span><span class="typewriter-cursor">|</span></p>
+            </div>
+
+            <div id="portfolio" class="content-section">
+                <div class="portfolio-grid">
+                    <a href="https://www.instagram.com/matt.afternights/" target="_blank" class="portfolio-item">instagram profile.</a>
+                    <a href="https://www.tiktok.com/@i.mvtt" target="_blank" class="portfolio-item">tiktok profile.</a>
+                    <a href="https://www.roblox.com/users/1999311288/profile" target="_blank" class="portfolio-item">roblox account.</a>
+                    <a href="#" target="_blank" class="portfolio-item">etc.</a>
+                </div>
+            </div>
+
+            <div id="about" class="content-section">
+                <div class="about-grid">
+                    <div class="about-card">
+                        <div class="card-icon">💻</div>
+                        <div class="card-title">coding</div>
+                        <div class="card-desc">front-end & full-stack</div>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🎥</div>
+                        <div class="card-title">editing</div>
+                        <div class="card-desc">clipping/niche editing</div>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🐉</div>
+                        <div class="card-title">dragon fruit</div>
+                        <div class="card-desc">my favorite fruit</div>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🎵</div>
+                        <div class="card-title">indie music</div>
+                        <div class="card-desc">music i love</div>
+                    </div>
+                    <div class="about-card" style="grid-column: 1 / -1;">
+                        <div class="card-icon">💭</div>
+                        <div class="card-title">i don't move on easily</div>
+                        <div class="card-desc">i stay loyal to what i love</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="music-player" id="player-container">
+        <button class="player-controls-block" onclick="toggleMusic()">
+            <div class="icon-deck">
+                <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </div>
+            <div class="visualizer-deck">
+                <div class="visualizer-bar"></div>
+                <div class="visualizer-bar"></div>
+                <div class="visualizer-bar"></div>
+                <div class="visualizer-bar"></div>
+            </div>
+        </button>
+        <div class="track-info">
+            <span class="track-title">Tensionado</span>
+            <span class="track-artist">Soapdish</span>
+        </div>
+    </div>
+
+    <img class="tracker-pixel" style="display: none;" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmatt.afterhours.local&count_bg=%23000000&title_bg=%23000000&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" onload="fetchViews()" onerror="useOfflineFallback()" alt=""/>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button').forEach(item => {
+            item.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            item.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            item.addEventListener('mousemove', (e) => {
+                const rect = item.getBoundingClientRect();
+                item.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+                item.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+            });
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            createTouchElement(e.touches[0].clientX, e.touches[0].clientY);
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            createTouchElement(e.touches[0].clientX, e.touches[0].clientY);
+        });
+
+        function createTouchElement(x, y) {
+            const targetEl = document.elementFromPoint(x, y);
+            if (targetEl && (targetEl.closest('.music-player') || targetEl.closest('.tabs') || targetEl.closest('.portfolio-grid'))) {
+                return; 
+            }
+            const trail = document.createElement('div');
+            trail.className = 'touch-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => { trail.remove(); }, 400);
+        }
+
+        function setupVideoBackground() {
+            const video = document.getElementById('bg-video');
+            if (video) {
+                video.addEventListener('error', () => {
+                    console.log('Video not found. Add background.mp4 to the portfolio folder.');
+                    document.body.style.background = 'radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f0f 100%)';
+                });
+            }
+        }
+        setupVideoBackground();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            typeWriterLoop();
+            setTimeout(() => {
+                if (document.getElementById('view-display').innerText === "loading views...") {
+                    useOfflineFallback();
+                }
+            }, 600);
+        });
+
+        function fetchViews() {
+            let currentCount = localStorage.getItem('page_view_counter') || Math.floor(Math.random() * 80) + 32;
+            currentCount = parseInt(currentCount) + 1;
+            localStorage.setItem('page_view_counter', currentCount);
+            document.getElementById('view-display').innerText = `${currentCount.toLocaleString()} views`;
+        }
+
+        function useOfflineFallback() {
+            let currentCount = localStorage.getItem('page_view_counter') || Math.floor(Math.random() * 80) + 32;
+            currentCount = parseInt(currentCount) + 1;
+            localStorage.setItem('page_view_counter', currentCount);
+            document.getElementById('view-display').innerText = `${currentCount.toLocaleString()} views`;
+        }
+
+        function switchTab(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const container = document.getElementById('player-container');
+            if (!music || !container) return;
+            if (music.paused) {
+                container.classList.add('is-playing');
+                music.play().catch(err => { 
+                    console.log("Audio playback error - ensure music.mp3 is in the same folder:", err);
+                    container.classList.remove('is-playing');
+                    alert('No audio file found. Place music.mp3 in the portfolio folder.');
+                });
+            } else {
+                music.pause();
+                container.classList.remove('is-playing');
+            }
+        }
+
+        const phrases = ["late hours.", "i have amnesia, just so you know.", "editor & coder.", "i love rezeden.", "please bear with me.", "i'm not a morning person.", "i like to stay up late.", "i'm a night owl.", "i enjoy the quiet of the night.", "i find inspiration in the dark.", "the night is my canvas."];
+        let phraseIndex = 0;
+        let characterIndex = 0;
+        let isDeleting = false;
+        const targetElement = document.getElementById('typewriter-text');
+
+        function typeWriterLoop() {
+            const currentPhrase = phrases[phraseIndex];
+            if (isDeleting) {
+                targetElement.textContent = currentPhrase.substring(0, characterIndex - 1);
+                characterIndex--;
+            } else {
+                targetElement.textContent = currentPhrase.substring(0, characterIndex + 1);
+                characterIndex++;
+            }
+            let typingSpeed = isDeleting ? 40 : 90;
+            if (!isDeleting && characterIndex === currentPhrase.length) {
+                typingSpeed = 2200; 
+                isDeleting = true;
+            } else if (isDeleting && characterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 400; 
+            }
+            setTimeout(typeWriterLoop, typingSpeed);
+        }
+    </script>
+</body>
+</html>
