@@ -1,235 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>matt</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mvtt | front-end developer</title>
+<meta name="description" content="mvtt is a front-end and full-stack developer based in Dagupan City, Philippines.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="reze.png">
 </head>
 <body>
-    <!-- Video Background -->
-    <video id="bg-video" autoplay muted loop playsinline>
-        <source src="background.mp4" type="video/mp4">
-    </video>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="cur" id="cur" aria-hidden="true"></div>
 
-    <div class="custom-cursor" id="cursor"></div>
+<header id="hd">
+  <a class="logo" href="#home">mvtt.<i>_</i></a>
+  <nav aria-label="Sections">
+    <a href="#home" class="on"><small>01</small>// home</a>
+    <a href="#expertise"><small>02</small>// expertise</a>
+    <a href="#work"><small>03</small>// work</a>
+    <a href="#about"><small>04</small>// about</a>
+    <a href="#contact"><small>05</small>// contact</a>
+  </nav>
+</header>
 
-    <div class="profile-container">
-        <div class="avatar"></div>
-        <h1>mvtt</h1>
-        <div class="username">mvtt._0</div>
-        
-        <div class="location-info">
-            <svg class="location-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5z"/></svg>
-            <span class="location-text">Dagupan City, Philippines</span>
-        </div>
-        
-        <div class="views-count" id="view-display">loading views...</div>
-
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('bio')">home</button>
-            <button class="tab-btn" onclick="switchTab('portfolio')">socials</button>
-            <button class="tab-btn" onclick="switchTab('about')">about me</button>
-        </div>
-
-        <div class="content-wrapper">
-            <div id="bio" class="content-section active">
-                <p class="bio-text"><span id="typewriter-text"></span><span class="typewriter-cursor">|</span></p>
-            </div>
-
-            <div id="portfolio" class="content-section">
-                <div class="portfolio-grid">
-                    <a href="https://www.instagram.com/matt.afternights/" target="_blank" class="portfolio-item">instagram profile.</a>
-                    <a href="https://www.tiktok.com/@i.mvtt" target="_blank" class="portfolio-item">tiktok profile.</a>
-                    <a href="https://www.roblox.com/users/1999311288/profile" target="_blank" class="portfolio-item">roblox account.</a>
-                    <a href="#" target="_blank" class="portfolio-item">etc.</a>
-                </div>
-            </div>
-
-            <div id="about" class="content-section">
-                <div class="about-grid">
-                    <div class="about-card">
-                        <div class="card-icon">💻</div>
-                        <div class="card-title">coding</div>
-                        <div class="card-desc">front-end & full-stack</div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">🎥</div>
-                        <div class="card-title">editing</div>
-                        <div class="card-desc">clipping/niche editing</div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">🐉</div>
-                        <div class="card-title">dragon fruit</div>
-                        <div class="card-desc">my favorite fruit</div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-icon">🎵</div>
-                        <div class="card-title">indie music</div>
-                        <div class="card-desc">music i love</div>
-                    </div>
-                    <div class="about-card" style="grid-column: 1 / -1;">
-                        <div class="card-icon">💭</div>
-                        <div class="card-title">i don't move on easily</div>
-                        <div class="card-desc">i stay loyal to what i love</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<main>
+  <div class="hero" id="home">
+    <video class="vid" src="background-optimized.mp4" autoplay muted loop playsinline aria-hidden="true" onerror="this.remove()"></video>
+    <div class="tint" aria-hidden="true"></div>
+    <div class="sparks" id="sparks" aria-hidden="true"></div>
+    <div class="flash" aria-hidden="true"></div>
+    <div class="stage" aria-hidden="true"><div class="orb"></div></div>
+    <div class="in">
+      <h1 class="name" aria-label="MVTT"><span style="--i:0" aria-hidden="true">M</span><span style="--i:1" aria-hidden="true">V</span><span style="--i:2" aria-hidden="true">T</span><span style="--i:3" aria-hidden="true">T</span></h1>
+      <p class="role">Front-end &amp; full-stack developer.</p>
+      <button class="pin" id="pull" type="button"><span class="ring"></span>Pull the pin</button>
     </div>
+    <div class="scroll" aria-hidden="true"></div>
+  </div>
 
-    <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="music-player" id="player-container">
-        <button class="player-controls-block" onclick="toggleMusic()">
-            <div class="icon-deck">
-                <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-            </div>
-            <div class="visualizer-deck">
-                <div class="visualizer-bar"></div>
-                <div class="visualizer-bar"></div>
-                <div class="visualizer-bar"></div>
-                <div class="visualizer-bar"></div>
-            </div>
-        </button>
-        <div class="track-info">
-            <span class="track-title">Tensionado</span>
-            <span class="track-artist">Soapdish</span>
-        </div>
+  <section class="s" id="expertise"><div class="wrap">
+    <h2 class="h">My Expertise</h2>
+    <div class="exp">
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg><span><span class="u" style="--c:var(--violet)">Front-end</span><br>Development</span></h3>
+        <span class="tag">&lt;h3&gt;</span>
+        <p>built with HTML, CSS and JavaScript. i am mostly a front-end developer so this is where i mainly code.</p><!-- edit: add your frameworks here -->
+        <span class="tag">&lt;/h3&gt;</span>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg><span><span class="u" style="--c:var(--ember)">Full-stack</span><br>Development</span></h3>
+        <span class="tag">&lt;h3&gt;</span>
+        <p>backend for the websites: APIs and data. python, javascript, C# (just a little bit). i'm not that good on backend development.</p><!-- edit: add your back-end stack here -->
+        <span class="tag">&lt;/h3&gt;</span>
+      </div>
+      <div class="cell">
+        <h3><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></svg><span><span class="u" style="--c:var(--pink)">Video</span><br>Editing</span></h3>
+        <span class="tag">&lt;h3&gt;</span>
+        <p>clipping and ae editing, made on the side.</p>
+        <span class="tag">&lt;/h3&gt;</span>
+      </div>
     </div>
+    <pre class="code" aria-hidden="true">const night = "festival";
+const reze = { pin: "pulled" };
+// The truth is, I never had the chance to go to school either.
+// "Which would you rather be, Denji? A city mouse or a country mouse?"</pre>
+  </div></section>
 
-    <img class="tracker-pixel" style="display: none;" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmatt.afterhours.local&count_bg=%23000000&title_bg=%23000000&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" onload="fetchViews()" onerror="useOfflineFallback()" alt=""/>
+  <section class="s" id="work"><div class="wrap">
+    <div class="work-top">
+      <div>
+        <h2 class="h">My Work</h2>
+        <p>personal projects and websites. these are my work so far and i am proud of it of course XD.</p>
+      </div>
+      <div class="feat">
+        <small>Featured project</small>
+        <b>This portfolio</b>
+        <a class="btn" href="https://mvtt.is-a.dev">View project</a>
+      </div>
+    </div>
+    <div class="filters" id="filters">
+      <span>Filter by</span>
+      <button class="on" data-f="all" aria-pressed="true">All<sup>03</sup></button>/
+      <button data-f="personal" aria-pressed="false">Personal projects<sup>01</sup></button>/
+      <button data-f="product" aria-pressed="false">Products<sup>02</sup></button>/
+      <button data-f="website" aria-pressed="false">Websites<sup>01</sup></button>
+    </div>
+    <div class="grid" id="grid">
+        <a class="card" data-c="personal website" href="https://mvtt.is-a.dev"><div class="thumb">mvtt<i>.</i></div><div class="t"><b>mvtt.is-a.dev</b><span>Personal website</span></div></a>
+     <a class="card" data-c="product" href="https://nico-ai-assistant.onrender.com">
+      <div class="thumb">Nico AI</div>
+  <div class="t"><b>Nico AI</b><span>AI assistant that I coded</span></div>
+</a>
+ <a class="card" data-c="product" href="https://mcrisostomoict.github.io/pixelatpanahon">
+  <div class="thumb">Comp PT</div>
+  <div class="t"><b>Comp PT</b><span>Old website I coded for a computer/ict project</span></div>
+</a>
+      <!-- copy a card above for each new project; use data-c="personal", "product" or "website" -->
+      <div class="ghost" id="ghost">More projects to come.</div>
+    </div>
+  </div></section>
 
-    <script>
-        const cursor = document.getElementById('cursor');
+  <section class="s about" id="about"><div class="wrap">
+    <h2 class="h">About me</h2>
+    <p>I'm mvtt, a developer in Dagupan City, Philippines. I code front-end and full-stack, edit clips using After Effects (AE) on the side, and listen to a wide variety of music, mainly indie music. My favorite fruit is dragon fruit.</p>
+    <p>I don't move on easily. I stay loyal to what I love, and that includes the tools I know well.</p>
+    <p>("M." ya'll get the references, right A, C, M, M, P?)</p>
+  </div></section>
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
+  <section class="s" id="contact"><div class="wrap">
+    <h2 class="h">Find me</h2>
+    <ul class="links">
+      <li><a href="https://www.instagram.com/mathcrisostomo/">Instagram</a></li>
+      <li><a href="https://www.tiktok.com/@i.mvtt">TikTok</a></li>
+      <li><a href="https://www.github.com/mvttreze">Github</a></li>
+      <li><a href="https://www.youtube.com/@mvttreze">YouTube</a></li>
+    </ul>
+  </div></section>
+</main>
+<footer>Click anywhere. It's festival night.</footer>
+<audio id="au" src="music-optimized.mp3" loop preload="none"></audio>
+<button class="snd" id="snd" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="sndtxt">Play music</span></button>
+<button class="top" id="top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 20V5M5 12l7-7 7 7"/></svg></button>
 
-        document.querySelectorAll('a, button').forEach(item => {
-            item.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            item.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-            item.addEventListener('mousemove', (e) => {
-                const rect = item.getBoundingClientRect();
-                item.style.setProperty('--x', (e.clientX - rect.left) + 'px');
-                item.style.setProperty('--y', (e.clientY - rect.top) + 'px');
-            });
-        });
-
-        document.addEventListener('touchmove', (e) => {
-            createTouchElement(e.touches[0].clientX, e.touches[0].clientY);
-        });
-
-        document.addEventListener('touchstart', (e) => {
-            createTouchElement(e.touches[0].clientX, e.touches[0].clientY);
-        });
-
-        function createTouchElement(x, y) {
-            const targetEl = document.elementFromPoint(x, y);
-            if (targetEl && (targetEl.closest('.music-player') || targetEl.closest('.tabs') || targetEl.closest('.portfolio-grid'))) {
-                return; 
-            }
-            const trail = document.createElement('div');
-            trail.className = 'touch-trail';
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-            setTimeout(() => { trail.remove(); }, 400);
-        }
-
-        function setupVideoBackground() {
-            const video = document.getElementById('bg-video');
-            if (video) {
-                video.addEventListener('error', () => {
-                    console.log('Video not found. Add background.mp4 to the portfolio folder.');
-                    document.body.style.background = 'radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0f0f0f 100%)';
-                });
-            }
-        }
-        setupVideoBackground();
-
-        document.addEventListener("DOMContentLoaded", () => {
-            typeWriterLoop();
-            setTimeout(() => {
-                if (document.getElementById('view-display').innerText === "loading views...") {
-                    useOfflineFallback();
-                }
-            }, 600);
-        });
-
-        function fetchViews() {
-            let currentCount = localStorage.getItem('page_view_counter') || Math.floor(Math.random() * 80) + 32;
-            currentCount = parseInt(currentCount) + 1;
-            localStorage.setItem('page_view_counter', currentCount);
-            document.getElementById('view-display').innerText = `${currentCount.toLocaleString()} views`;
-        }
-
-        function useOfflineFallback() {
-            let currentCount = localStorage.getItem('page_view_counter') || Math.floor(Math.random() * 80) + 32;
-            currentCount = parseInt(currentCount) + 1;
-            localStorage.setItem('page_view_counter', currentCount);
-            document.getElementById('view-display').innerText = `${currentCount.toLocaleString()} views`;
-        }
-
-        function switchTab(sectionId) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
-            event.currentTarget.classList.add('active');
-        }
-
-        function toggleMusic() {
-            const music = document.getElementById('bg-music');
-            const container = document.getElementById('player-container');
-            if (!music || !container) return;
-            if (music.paused) {
-                container.classList.add('is-playing');
-                music.play().catch(err => { 
-                    console.log("Audio playback error - ensure music.mp3 is in the same folder:", err);
-                    container.classList.remove('is-playing');
-                    alert('No audio file found. Place music.mp3 in the portfolio folder.');
-                });
-            } else {
-                music.pause();
-                container.classList.remove('is-playing');
-            }
-        }
-
-        const phrases = ["late hours.", "i have amnesia, just so you know.", "editor & coder.", "i love rezeden.", "please bear with me.", "i'm not a morning person.", "i like to stay up late.", "i'm a night owl.", "i enjoy the quiet of the night.", "i find inspiration in the dark.", "the night is my canvas."];
-        let phraseIndex = 0;
-        let characterIndex = 0;
-        let isDeleting = false;
-        const targetElement = document.getElementById('typewriter-text');
-
-        function typeWriterLoop() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                targetElement.textContent = currentPhrase.substring(0, characterIndex - 1);
-                characterIndex--;
-            } else {
-                targetElement.textContent = currentPhrase.substring(0, characterIndex + 1);
-                characterIndex++;
-            }
-            let typingSpeed = isDeleting ? 40 : 90;
-            if (!isDeleting && characterIndex === currentPhrase.length) {
-                typingSpeed = 2200; 
-                isDeleting = true;
-            } else if (isDeleting && characterIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                typingSpeed = 400; 
-            }
-            setTimeout(typeWriterLoop, typingSpeed);
-        }
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
