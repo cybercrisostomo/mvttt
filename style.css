@@ -183,13 +183,6 @@ header.solid::before{opacity:1}
 }
 @media (prefers-reduced-motion:reduce){.rain,.track{display:none}.rv{opacity:1;transform:none;transition:none}}
 
-/* top slider / marquee */
-.marq{overflow:hidden;border-block:1px solid var(--line);padding:.9rem 0;white-space:nowrap;background:color-mix(in srgb,var(--bg) 60%,transparent)}
-.track{display:inline-flex;animation:mq 30s linear infinite}
-.track span{font:600 clamp(1.2rem,3.5vw,2rem) Poppins,sans-serif;color:transparent;-webkit-text-stroke:1px var(--muted);padding:0 1.8rem}
-.track span::after{content:"";display:inline-block;width:.55rem;height:.55rem;border-radius:50%;background:var(--ember);margin-left:2.6rem;vertical-align:middle}
-@keyframes mq{to{transform:translateX(-50%)}}
-
 /* ---- contact form ---- */
 .mail{margin-top:2.5rem;display:grid;gap:1rem;max-width:34rem;margin-left:auto;margin-right:auto}
 .mail label{display:grid;gap:.4rem;font-size:.9rem;color:var(--muted)}
