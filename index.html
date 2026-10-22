@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>mvtt | front-end developer</title>
+<title>mvtt | student developer</title>
 <meta name="description" content="mvtt is a front-end and full-stack developer based in Dagupan City, Philippines.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,24 +13,28 @@
 </head>
 <body>
 <canvas id="fx" aria-hidden="true"></canvas>
+<div class="prog" id="prog"></div>
 <div class="cur" id="cur" aria-hidden="true"></div>
 
 <header id="hd">
   <a class="logo" href="#home">mvtt.<i>_</i></a>
-  <nav aria-label="Sections">
+  <nav id="nav" aria-label="Sections">
     <a href="#home" class="on"><small>01</small>// home</a>
     <a href="#expertise"><small>02</small>// expertise</a>
     <a href="#work"><small>03</small>// work</a>
     <a href="#about"><small>04</small>// about</a>
     <a href="#contact"><small>05</small>// contact</a>
   </nav>
+  <button class="theme" id="theme" type="button" aria-label="Toggle light or dark theme">light</button>
+  <button class="menu" id="menu" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
 </header>
 
 <main>
   <div class="hero" id="home">
-    <video class="vid" src="background-optimized.mp4" autoplay muted loop playsinline aria-hidden="true" onerror="this.remove()"></video>
+    <video class="vid" data-src="background-optimized.mp4" autoplay muted loop playsinline aria-hidden="true" onerror="this.remove()"></video>
     <div class="tint" aria-hidden="true"></div>
     <div class="sparks" id="sparks" aria-hidden="true"></div>
+    <div class="rain" id="rain" aria-hidden="true"></div>
     <div class="flash" aria-hidden="true"></div>
     <div class="stage" aria-hidden="true"><div class="orb"></div></div>
     <div class="in">
@@ -38,8 +42,11 @@
       <p class="role">Front-end &amp; full-stack developer.</p>
       <button class="pin" id="pull" type="button"><span class="ring"></span>Pull the pin</button>
     </div>
+    <div class="meta"><span>Dagupan City, PH</span><span id="clk"></span></div>
     <div class="scroll" aria-hidden="true"></div>
   </div>
+
+  <div class="marq" aria-hidden="true"><div class="track" id="track"><span>front-end</span><span>full-stack</span><span>after effects</span><span>indie music</span><span>dragon fruit</span></div></div>
 
   <section class="s" id="expertise"><div class="wrap">
     <h2 class="h">My Expertise</h2>
@@ -63,6 +70,7 @@
         <span class="tag">&lt;/h3&gt;</span>
       </div>
     </div>
+    <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>C#</li><li>After Effects</li></ul>
     <pre class="code" aria-hidden="true">const night = "festival";
 const reze = { pin: "pulled" };
 // The truth is, I never had the chance to go to school either.
@@ -90,15 +98,30 @@ const reze = { pin: "pulled" };
     </div>
     <div class="grid" id="grid">
         <a class="card" data-c="personal website" href="https://mvtt.is-a.dev"><div class="thumb">mvtt<i>.</i></div><div class="t"><b>mvtt.is-a.dev</b><span>Personal website</span></div></a>
-     <a class="card" data-c="product" href="https://nico.runs-on.dev/">
-      <div class="thumb">Nico AI</div>
+     <a class="card" data-c="product" href="https://nico-ai-assistant.onrender.com">
+      <div class="thumb">N<i>.</i></div>
   <div class="t"><b>Nico AI</b><span>AI assistant that I coded</span></div>
 </a>
  <a class="card" data-c="product" href="https://mcrisostomoict.github.io/pixelatpanahon">
-  <div class="thumb">Comp PT</div>
+  <div class="thumb">C<i>.</i></div>
   <div class="t"><b>Comp PT</b><span>Old website I coded for a computer/ict project</span></div>
 </a>
-      <!-- copy a card above for each new project; use data-c="personal", "product" or "website" -->
+      <a class="card" data-c="product" href="#">
+  <div class="thumb">M<i>.</i></div>
+  <div class="t"><b>Mod Bot</b><span>Discord moderation bot (Python)</span></div>
+</a>
+      <a class="card" data-c="personal" href="#">
+  <div class="thumb">J<i>.</i></div>
+  <div class="t"><b>Jarvis</b><span>Voice assistant dashboard</span></div>
+</a>
+      <a class="card" data-c="website" href="#">
+  <div class="thumb">O<i>.</i></div>
+  <div class="t"><b>Omniroute</b><span>Route finder website</span></div>
+</a>
+      <a class="card" data-c="personal" href="#">
+  <div class="thumb">H<i>.</i></div>
+  <div class="t"><b>Hitodama</b><span>Free visual novel project</span></div>
+</a>
       <div class="ghost" id="ghost">More projects to come.</div>
     </div>
   </div></section>
@@ -108,6 +131,7 @@ const reze = { pin: "pulled" };
     <p>I'm mvtt, a developer in Dagupan City, Philippines. I code front-end and full-stack, edit clips using After Effects (AE) on the side, and listen to a wide variety of music, mainly indie music. My favorite fruit is dragon fruit.</p>
     <p>I don't move on easily. I stay loyal to what I love, and that includes the tools I know well.</p>
     <p>("M." ya'll get the references, right A, C, M, M, P?)</p>
+    <div class="tiles"><div><b>coding</b><span>front-end &amp; full-stack</span></div><div><b>editing</b><span>clipping with After Effects</span></div><div><b>dragon fruit</b><span>my favorite fruit</span></div><div><b>indie music</b><span>music i love</span></div></div>
   </div></section>
 
   <section class="s" id="contact"><div class="wrap">
@@ -118,9 +142,19 @@ const reze = { pin: "pulled" };
       <li><a href="https://www.github.com/mvttreze">Github</a></li>
       <li><a href="https://www.youtube.com/@mvttreze">YouTube</a></li>
     </ul>
+
+    <form class="mail" id="mail" novalidate>
+      <label><span>Name</span><input type="text" name="name" placeholder="your name" required></label>
+      <label><span>Email</span><input type="email" name="email" placeholder="you@example.com" required></label>
+      <label><span>Message</span><textarea name="message" placeholder="what would you like to build?" required></textarea></label>
+      <button type="submit" class="btn send"><span>Send message</span><i>→</i></button>
+      <p class="ok" aria-live="polite"></p>
+    </form>
+
+    <p class="note">or just say hi on any of the links above · response time: whenever i'm awake</p>
   </div></section>
 </main>
-<footer>Click anywhere. It's festival night.</footer>
+<footer>mvtt._ · Dagupan City, Philippines · 2026<br>Click anywhere. It's festival night.</footer>
 <audio id="au" src="music-optimized.mp3" loop preload="none"></audio>
 <button class="snd" id="snd" type="button" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span id="sndtxt">Play music</span></button>
 <button class="top" id="top" type="button" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 20V5M5 12l7-7 7 7"/></svg></button>
